@@ -1,6 +1,3 @@
-#Base libraries
-tqdm
-
-#CV
 ultralytics
-cv2
+opencv-python
+tqdm
