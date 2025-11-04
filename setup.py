@@ -22,5 +22,4 @@ setuptools.setup(
             'detect_humans=detect_humans:main',
         ],
     },
-    packages=['human-detection'],
 )
