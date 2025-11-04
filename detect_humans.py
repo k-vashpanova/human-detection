@@ -111,15 +111,16 @@ def detect_humans_on_video(file_path,
 
     # Writing the output video
     video_params, num_frames = get_video_params(file_path)
-    with cv2.VideoWriter(output_filename, **video_params) as out:
-        for r in tqdm(results,
-                      total=num_frames,
-                      desc='Processing video: '):
-            frame = r.plot(labels=True,
-                           probs=True,
-                           show=False,
-                           font='Calibri.tiff')
-            out.write(frame)
+    out = cv2.VideoWriter(output_filename, **video_params)
+    for r in tqdm(results,
+                  total=num_frames,
+                  desc='Processing video: '):
+        frame = r.plot(labels=True,
+                       probs=True,
+                       show=False,
+                       font='Calibri.tiff')
+        out.write(frame)
+    out.release()
 
     print(f"Video '{output_filename}' created successfully.")
 
@@ -145,4 +146,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
