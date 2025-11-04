@@ -1,0 +1,6 @@
+#Base libraries
+tqdm
+
+#CV
+ultralytics
+cv2
