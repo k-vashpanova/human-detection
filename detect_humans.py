@@ -89,7 +89,7 @@ def detect_humans_on_video(file_path,
 
     Raises:
         ValueError: If output filename doesn't have .avi extension.
-        FileNotFoundError: If input video or model file cannot be found.
+        FileNotFoundError: If input video file cannot be found.
 
     Note:
         - Processing progress is displayed with a progress bar.
@@ -101,9 +101,6 @@ def detect_humans_on_video(file_path,
 
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"Input video not found: {file_path}")
-
-    if not os.path.exists(model_path):
-        raise FileNotFoundError(f"Model file not found: {model_path}")
 
     if not output_filename.lower().endswith('.avi'):
         raise ValueError("Output file must have .avi extension")
@@ -148,3 +145,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
