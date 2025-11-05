@@ -10,8 +10,8 @@ Features:
     - Support for various YOLO model sizes
 
 Example:
-    >>> from detect_humans import detect_humans_on_video
-    >>> detect_humans_on_video('input.mp4', 'output.avi', 'yolo11n.pt')
+    >>> from detect_humans import detect_humans_in_video
+    >>> detect_humans_in_video('input.mp4', 'output.avi', 'yolo11n.pt')
 
 Command Line Usage:
     detect_humans <filename> [--options]
@@ -66,7 +66,7 @@ def get_video_params(file_path):
     }, int(vid.get(cv2.CAP_PROP_FRAME_COUNT))
 
 
-def detect_humans_on_video(file_path,
+def detect_humans_in_video(file_path,
                            output_filename='output.avi',
                            model_path='yolo11n.pt'):
     """
@@ -82,6 +82,19 @@ def detect_humans_on_video(file_path,
         output_filename (str, optional): Name of the output video file.
             Must have .avi extension. Defaults to 'output.avi'.
         model_path (str, optional): Path to the YOLO model weights file.
+            Supports YOLO models from Ultralytics. See:
+            https://docs.ultralytics.com/models/yolo11/
+
+            YOLO11 Models (recommended):
+            - yolo11n.pt (nano) - fastest
+            - yolo11s.pt (small) - fast  
+            - yolo11m.pt (medium) - balanced
+            - yolo11l.pt (large) - accurate
+            - yolo11x.pt (xlarge) - most accurate
+
+            Custom Models:
+            - Path to your custom trained .pt file
+
             Defaults to 'yolo11n.pt'.
 
     Returns:
@@ -95,7 +108,7 @@ def detect_humans_on_video(file_path,
         - Processing progress is displayed with a progress bar.
 
     Example:
-        >>> detect_humans_on_video('input.mp4', 'output.avi', 'yolo11s.pt')
+        >>> detect_humans_in_video('input.mp4', 'output.avi', 'yolo11s.pt')
         Video 'output.avi' created successfully.
     """
 
@@ -138,7 +151,7 @@ def main():
 
     args = parser.parse_args()
 
-    detect_humans_on_video(
+    detect_humans_in_video(
         file_path=args.filename,
         output_filename=args.output,
         model_path=args.model
@@ -146,5 +159,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
